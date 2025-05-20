@@ -17,7 +17,7 @@ int menu() {
     return opc;
 }
 
-void ing_recursos(int *contcomp, char component[8][50], int *confirm, int cant[5][8], int cantidad[8]) {
+void ing_recursos(int *contcomp, char component[8][50], int confirm, int cant[5][8], int cantidad[8]) {
     if (*contcomp >= 8) {
         printf("Límite de componentes alcanzado.\n");
         return;
@@ -52,10 +52,10 @@ void ing_recursos(int *contcomp, char component[8][50], int *confirm, int cant[5
     } while (cantidad[*contcomp] <= 0);
 
     (*contcomp)++;
-    (*confirm)++;
+    (confirm)++;
 }
 
-void ing_Productos(int *contprod, int contcomp, char producto[5][50], char component[8][50], int cant[5][8], float tiempo[5], int *confirm2) {
+void ing_Productos(int *contprod, int contcomp, char producto[5][50], char component[8][50], int cant[5][8], float tiempo[5], int confirm2) {
     if (*contprod >= 5) {
         printf("Límite de productos alcanzado (5).\n");
         return;
@@ -102,7 +102,7 @@ void ing_Productos(int *contprod, int contcomp, char producto[5][50], char compo
     } while (tiempo[*contprod] <= 0);
 
     (*contprod)++;
-    (*confirm2)++;
+    (confirm2)++;
 }
 void pedido(int *contprod, char producto[5][50], int cant[5][8], float tiempo[5], char component[8][50], int cantidad[8], int *contcomp) {
     int opclist;
@@ -177,7 +177,7 @@ cantidad_pedida = validar_cantidad(cantidad_pedida);
 
     printf("Pedido de %d %s confirmado. Tiempo estimado de entrega: %.2f minutos.\n", cantidad_pedida, producto[opclist], tiempo_total);
 }
-void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char component[8][50], int cant[5][8], float tiempo[5], int contcomp, int *confirm2) {
+void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char component[8][50], int cant[5][8], float tiempo[5], int contcomp, int confirm2) {
     int pos, opc;
     if (*contprod == 0) {
         printf("No hay productos registrados.\n");
@@ -249,7 +249,7 @@ void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char compon
             tiempo[i] = tiempo[i + 1];
         }
         (*contprod)--;
-        (*confirm2)--;
+        (confirm2)--;
         printf("Producto eliminado.\n");
     } else {
         printf("Opción inválida.\n");
@@ -257,7 +257,7 @@ void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char compon
 }
 
 
-void edit_recursos(int *contcomp, char component[8][50], int cant[5][8], int cantidad[8], int *confirm) {
+void edit_recursos(int *contcomp, char component[8][50], int cant[5][8], int cantidad[8], int confirm) {
     int pos, opc;
     if (*contcomp == 0) {
         printf("No hay componentes registrados.\n");
@@ -314,7 +314,7 @@ void edit_recursos(int *contcomp, char component[8][50], int cant[5][8], int can
             strcpy(component[i], component[i + 1]);
         }
         (*contcomp)--;
-        (*confirm)--;
+        (confirm)--;
         printf("Componente eliminado.\n");
     } else {
         printf("Opcion invalida.\n");

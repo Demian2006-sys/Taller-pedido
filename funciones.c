@@ -57,10 +57,10 @@ void ing_Productos(int *contprod, int contcomp, char producto[5][50], char compo
         printf("%s: ", component[i]);
         cant[*contprod][i] = validar_cantidad(cant[*contprod][i]);
         while (getchar() != '\n'); // limpiar buffer
-        if (cant[*contprod][i] <= 0) {
-            printf("La cantidad no puede ser negativa o cero. Por favor, ingrese una cantidad válida.\n");
+        if (cant[*contprod][i] < 0) {
+            printf("La cantidad no puede ser negativa. Por favor, ingrese una cantidad válida.\n");
         }
-        }while (cant[*contprod][i] <= 0);
+        }while (cant[*contprod][i] < 0);
 
     }
 do{
@@ -155,7 +155,6 @@ void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char compon
         printf("No hay productos registrados.\n");
         return;
     }
-
     printf("Productos:\n");
     for (int i = 0; i < *contprod; i++) {
         printf("%d. %s\n", i + 1, producto[i]);
@@ -183,8 +182,8 @@ void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char compon
         for (int i = 0; i < contcomp; i++) {
             printf("%s: ", component[i]);
             do{cant[pos][i] = validar_cantidad(cant[pos][i]);
-            if (cant[pos][i] <= 0) {
-                printf("La cantidad no puede ser negativa o cero. Por favor, ingrese una cantidad válida.\n");
+            if (cant[pos][i] < 0) {
+                printf("La cantidad no puede ser negativa. Por favor, ingrese una cantidad válida.\n");
             }
             } while (cant[pos][i] < 0);
             

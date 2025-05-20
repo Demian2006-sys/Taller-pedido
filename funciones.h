@@ -6,4 +6,4 @@ void edit_recursos(int *contcomp, char component[8][50], int cant[5][8], int can
 int menu();
 int validar_cantidad(int num);
 float validar_cantidad_float(float num);
-reabastecer_componentes(int *contcomp, char component[8][50], int cantidad[8]);
+void reabastecer_componentes(int *contcomp, char component[8][50], int cantidad[8]);

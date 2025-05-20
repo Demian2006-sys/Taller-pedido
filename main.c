@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
                 ing_Productos(&contprod, contcomp, producto, component, cant, tiempo,confirm2);
                 break;
             case 3:
-                pedido(&contprod, producto, cant, tiempo, component, cantidad);
+                pedido(&contprod, producto, cant, tiempo, component, cantidad, &contcomp);
                 break;
             case 4:
                 edit_prod(&contprod, producto, cantstck, component, cant, tiempo, contcomp, confirm2);

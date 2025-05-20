@@ -370,7 +370,6 @@ void reabastecer_componentes(int *contcomp, char component[8][50], int cantidad[
         seleccion = validar_cantidad(seleccion);
     }
     seleccion--; // Convertimos a índice de array
-
     int adicional;
     printf("Ingrese la cantidad a agregar al componente '%s': ", component[seleccion]);
     do {

@@ -36,11 +36,11 @@ int main(int argc, char *argv[]) {
             reabastecer_componentes(&contcomp, component, cantidad);
             break;
             case 7:
-                printf("Saliendo del programa.\n");
-                break;
+            printf("Saliendo del programa.\n");
+            break;
             default:
-                printf("Opción no válida. Intente de nuevo.\n");
-                break;
+            printf("Opción no válida. Intente de nuevo.\n");
+            break;
         }
     } while (opc != 7);
 

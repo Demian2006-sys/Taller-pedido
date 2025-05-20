@@ -10,7 +10,8 @@ int menu() {
     printf("3. Realizar pedidos\n");
     printf("4. Editar/Borrar Producto\n");
     printf("5. Editar/Borrar componentes\n");
-    printf("6. Salir\n");
+    printf ("6. Reabastecer componente");
+    printf ("7. Salir\n");
     printf(">> ");
     opc = validar_cantidad(opc);
     while (getchar() != '\n'); // limpiar el buffer
@@ -348,4 +349,37 @@ float validar_cantidad_float(float num)
         validacion = scanf("%f", &num);
     }
     return num;
+}
+
+void reabastecer_componentes(int *contcomp, char component[8][50], int cantidad[8]) {
+    if (*contcomp == 0) {
+        printf("No hay componentes registrados para reabastecer.\n");
+        return;
+    }
+
+    printf("Componentes disponibles:\n");
+    for (int i = 0; i < *contcomp; i++) {
+        printf("%d. %s (Cantidad actual: %d)\n", i + 1, component[i], cantidad[i]);
+    }
+
+    int seleccion;
+    printf("Seleccione el número del componente que desea reabastecer: ");
+    seleccion = validar_cantidad(seleccion);
+    while (seleccion < 1 || seleccion > *contcomp) {
+        printf("Selección inválida. Intente nuevamente: ");
+        seleccion = validar_cantidad(seleccion);
+    }
+    seleccion--; // Convertimos a índice de array
+
+    int adicional;
+    printf("Ingrese la cantidad a agregar al componente '%s': ", component[seleccion]);
+    do {
+        adicional = validar_cantidad(adicional);
+        if (adicional <= 0) {
+            printf("La cantidad debe ser positiva. Intente nuevamente: ");
+        }
+    } while (adicional <= 0);
+
+    cantidad[seleccion] += adicional;
+    printf("Componente '%s' reabastecido. Nueva cantidad: %d\n", component[seleccion], cantidad[seleccion]);
 }

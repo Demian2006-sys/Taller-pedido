@@ -33,6 +33,9 @@ int main(int argc, char *argv[]) {
                 edit_recursos(&contcomp, component, cant, cantidad, confirm);
                 break;
             case 6:
+            reabastecer_componentes( &contcomp,  component[8][50], cantidad[8]);
+            break;
+            case 7:
                 printf("Saliendo del programa.\n");
                 break;
             default:

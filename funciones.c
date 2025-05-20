@@ -28,8 +28,14 @@ void ing_recursos(int *contcomp, char component[8][50], int *confirm, int cant[5
     component[*contcomp][strcspn(component[*contcomp], "\n")] = '\0'; // eliminar salto de línea
 
     printf("Ingrese la cantidad de %s: ", component[*contcomp]);
-    cantidad[*contcomp] = validar_cantidad(cantidad[*contcomp]);
+    do{
+   cantidad[*contcomp] = validar_cantidad(cantidad[*contcomp]);
     while (getchar() != '\n'); // limpiar buffer
+    if (cantidad[*contcomp] <= 0) {
+        printf("La cantidad no puede ser negativa o cero. Por favor, ingrese una cantidad válida.\n");
+    }
+    } while (cantidad[*contcomp] <= 0);
+ 
 
     (*contcomp)++;
     *confirm++;
@@ -47,13 +53,25 @@ void ing_Productos(int *contprod, int contcomp, char producto[5][50], char compo
 
     printf("Ingrese la cantidad necesaria de cada componente para producir un solo %s:\n", producto[*contprod]);
     for (int i = 0; i < contcomp; i++) {
+        do{
         printf("%s: ", component[i]);
         cant[*contprod][i] = validar_cantidad(cant[*contprod][i]);
-    }
+        while (getchar() != '\n'); // limpiar buffer
+        if (cant[*contprod][i] <= 0) {
+            printf("La cantidad no puede ser negativa o cero. Por favor, ingrese una cantidad válida.\n");
+        }
+        }while (cant[*contprod][i] <= 0);
 
+    }
+do{
     printf("Ingrese el tiempo necesario para producir un %s (en minutos): ", producto[*contprod]);
     tiempo[*contprod] = validar_cantidad(tiempo[*contprod]);
     while (getchar() != '\n');
+    if (tiempo[*contprod] <= 0) {
+        printf("El tiempo no puede ser negativo o cero. Por favor, ingrese un tiempo válido.\n");
+    }
+}while (tiempo[*contprod] <= 0);
+
 
     (*contprod)++;
      confirm2++;
@@ -99,9 +117,15 @@ void pedido(int *contprod, char producto[5][50], int cant[5][8], float tiempo[5]
         }
     }
 
-    printf("¿En qué tiempo desea recibir el pedido el cliente? (en minutos): ");
+    
     float tiempo_pedido;
-    tiempo_pedido = validar_cantidad(tiempo_pedido);
+    do{
+        printf("¿En qué tiempo desea recibir el pedido el cliente? (en minutos): ");
+        tiempo_pedido = validar_cantidad_float(tiempo_pedido);
+        if (tiempo_pedido <= 0) {
+            printf("El tiempo no puede ser negativo o cero. Por favor, ingrese un tiempo válido.\n");
+        }
+    } while (tiempo_pedido < 0);
     tiempo_total = tiempo[opclist] * cantidad_pedida;
     float falta;
     falta= tiempo_total - tiempo_pedido;
@@ -151,13 +175,21 @@ void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char compon
         printf("Nueva cantidad de cada componente:\n");
         for (int i = 0; i < contcomp; i++) {
             printf("%s: ", component[i]);
-            cant[pos][i] = validar_cantidad(cant[pos][i]);
+            do{cant[pos][i] = validar_cantidad(cant[pos][i]);
+            if (cant[pos][i] <= 0) {
+                printf("La cantidad no puede ser negativa o cero. Por favor, ingrese una cantidad válida.\n");
+            }
+            } while (cant[pos][i] < 0);
+            
         }
-
+do{
         printf("Nuevo tiempo de producción (en minutos): ");
         tiempo[pos] = validar_cantidad(tiempo[pos]);
         while (getchar() != '\n');
-
+        if (tiempo[pos] <= 0) {
+            printf("El tiempo no puede ser negativo o cero. Por favor, ingrese un tiempo válido.\n");
+        }
+}while (tiempo[pos] <= 0);
         printf("Producto editado con éxito.\n");
     } else if (opc == 2) {
         for (int i = pos; i < *contprod - 1; i++) {
@@ -205,9 +237,15 @@ void edit_recursos(int *contcomp, char component[8][50], int cant[5][8], int can
         fgets(component[pos], 50, stdin);
         component[pos][strcspn(component[pos], "\n")] = '\0';
         printf("Componente editado.\n");
+        do{
         printf("Nueva cantidad: ");
 
         cantidad[pos] = validar_cantidad(cantidad[pos]);
+        if (cantidad[pos] <= 0) {
+            printf("La cantidad no puede ser negativa o cero. Por favor, ingrese una cantidad válida.\n");
+        }
+        }while  (cantidad[pos] <= 0);
+
 
         printf("Cantidad editada.\n");
     } else if (opc == 2) {
@@ -226,11 +264,24 @@ int validar_cantidad(int num)
 {
     int validacion;
     validacion = scanf("%d", &num);
-    while (validacion != 1 || num<=0)
+    while (validacion != 1)
     {
         printf("Entrada invalida. Por favor, ingrese un numero entero positivo: ");
         while (getchar() != '\n');
         validacion = scanf("%d", &num);
+    }
+    return num;
+}
+
+float validar_cantidad_float(float num)
+{
+    int validacion;
+    validacion = scanf("%f", &num);
+    while (validacion != 1)
+    {
+        printf("Entrada invalida. Por favor, ingrese un numero: ");
+        while (getchar() != '\n');
+        validacion = scanf("%f", &num);
     }
     return num;
 }

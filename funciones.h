@@ -5,3 +5,4 @@ void edit_prod(int *contprod, char producto[5][50], int cantstck[5], char compon
 void edit_recursos(int *contcomp, char component[8][50], int cant[5][8], int cantidad[8], int confirm);
 int menu();
 int validar_cantidad(int num);
+float validar_cantidad_float(float num);

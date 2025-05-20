@@ -60,7 +60,10 @@ void ing_Productos(int *contprod, int contcomp, char producto[5][50], char compo
         printf("Límite de productos alcanzado (5).\n");
         return;
     }
-
+    if (contcomp == 0) {
+        printf("No hay productos registrados para agregar un producto.\n");
+        return;
+    }
     char nombre[50];
     int repetido;
     do {

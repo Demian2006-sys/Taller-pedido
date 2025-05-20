@@ -17,7 +17,7 @@ int menu() {
     return opc;
 }
 
-void ing_recursos(int *contcomp, char component[8][50], int confirm, int cant[5][8], int cantidad[8]) {
+void ing_recursos(int *contcomp, char component[8][50], int *confirm, int cant[5][8], int cantidad[8]) {
     if (*contcomp >= 8) {
         printf("Límite de componentes alcanzado.\n");
         return;

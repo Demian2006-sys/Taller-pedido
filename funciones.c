@@ -119,7 +119,6 @@ cantidad_pedida = validar_cantidad(cantidad_pedida);
         int necesario = cant[opclist][i] * cantidad_pedida;
         if (necesario > cantidad[i]) {
             printf("No hay suficiente del recurso '%s'. Necesario: %d, Disponible: %d\n", component[i], necesario, cantidad[i]);
-            printf("No se puede cumplir el pedido por falta de recursos.\n");
             cantidades++;
         }
     }

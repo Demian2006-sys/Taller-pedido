@@ -10,7 +10,7 @@ int menu() {
     printf("3. Realizar pedidos\n");
     printf("4. Editar/Borrar Producto\n");
     printf("5. Editar/Borrar componentes\n");
-    printf ("6. Reabastecer componente");
+    printf ("6. Reabastecer componente\n");
     printf ("7. Salir\n");
     printf(">> ");
     opc = validar_cantidad(opc);

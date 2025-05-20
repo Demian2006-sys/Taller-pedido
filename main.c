@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
                 edit_recursos(&contcomp, component, cant, cantidad, confirm);
                 break;
             case 6:
-            reabastecer_componentes( &contcomp,  component[8][50], cantidad[8]);
+            reabastecer_componentes(&contcomp, component, cantidad);
             break;
             case 7:
                 printf("Saliendo del programa.\n");
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
                 printf("Opción no válida. Intente de nuevo.\n");
                 break;
         }
-    } while (opc != 6);
+    } while (opc != 7);
 
     return 0;
 }

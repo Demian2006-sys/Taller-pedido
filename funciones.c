@@ -104,8 +104,15 @@ void pedido(int *contprod, char producto[5][50], int cant[5][8], float tiempo[5]
     } while (opclist < 0 || opclist >= *contprod);
 
     printf("¿Cuantos %s desea pedir? ", producto[opclist]);
-    int cantidad_pedida;  // <- nuevo nombre para evitar conflicto
-    cantidad_pedida = validar_cantidad(cantidad_pedida);
+    int cantidad_pedida;
+    do{
+cantidad_pedida = validar_cantidad(cantidad_pedida);
+    while (getchar() != '\n'); // limpiar buffer
+    if (cantidad_pedida <= 0) {
+        printf("La cantidad no puede ser negativa o cero. Por favor, ingrese una cantidad válida.\n");
+    }
+    }while (cantidad_pedida <= 0);
+    
 
     // Verificación de recursos
     for (int i = 0; i < *contprod; i++) {
@@ -125,7 +132,7 @@ void pedido(int *contprod, char producto[5][50], int cant[5][8], float tiempo[5]
         if (tiempo_pedido <= 0) {
             printf("El tiempo no puede ser negativo o cero. Por favor, ingrese un tiempo válido.\n");
         }
-    } while (tiempo_pedido < 0);
+    } while (tiempo_pedido <= 0);
     tiempo_total = tiempo[opclist] * cantidad_pedida;
     float falta;
     falta= tiempo_total - tiempo_pedido;

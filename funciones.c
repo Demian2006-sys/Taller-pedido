@@ -80,7 +80,7 @@ do{
 void pedido(int *contprod, char producto[5][50], int cant[5][8], float tiempo[5], char component[8][50], int cantidad[8]) {
     int opclist;
     float tiempo_total;
-    int cantidades;
+    int cantidades=0;
     if (*contprod == 0) {
         printf("No hay productos registrados para realizar un pedido.\n");
         return;
@@ -115,12 +115,12 @@ cantidad_pedida = validar_cantidad(cantidad_pedida);
     
 
     // Verificación de recursos
-    for (int i = 0; i < *contprod; i++) {
+    for (int i = 0; i < 8; i++) {
         int necesario = cant[opclist][i] * cantidad_pedida;
         if (necesario > cantidad[i]) {
-            printf("No hay suficiente del recurso '%s'. Necesario: %d, Disponible: %d\n", component[i], necesario, cantidad[i]);
+            printf(" - Recurso insuficiente: '%s' | Necesario: %d | Disponible: %d\n", component[i], necesario, cantidad[i]);
             cantidades++;
-        }
+        }   
     }
     if (cantidades > 0) {
         printf("No se puede cumplir el pedido por falta de recursos.\n");
